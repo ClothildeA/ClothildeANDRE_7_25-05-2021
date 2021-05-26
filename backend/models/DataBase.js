@@ -1,12 +1,19 @@
 const mysql = require('mysql');
 
+console.log('Get Connection...');
+
 const options = {
-		host: process.env.DB_HOST,
-		user: process.env.DB_USER,
-		password: process.env.DB_PASSWORD,
-		database: 'groupomania'
-	}
+		database: 'groupomania',
+		host: 'localhost',
+		user: 'root',
+		password: '1Rischk4'
+	};
 	
 const dbConnect = mysql.createConnection(options);
+
+dbConnect.connect(function(err) {
+	if (err) throw err;
+	console.log("Connected to database!");
+  });
 
 module.exports = {options, dbConnect};
