@@ -1,6 +1,14 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const mysql = require ('mysql');
+
+const userRoutes = require('./routes/user');
+/*
+const postsRoutes = require('./routes/posts');
+const commentsRoutes = require('./routes/comments');
+*/
+
+const User = require('./models/User.js');
+const DB = require('./models/DataBase');
 
 const app = express();
 
@@ -14,7 +22,20 @@ app.use((req, res, next)=>{
 });
 
 /* Config - Body-Parser */
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+/* Routes */
+
+/*
+app.use('/images', express.static(path.join(__dirname, 'images')));
+*/
+app.use('/api/auth', userRoutes);
+
+
+/*
+app.use('/api/posts', postsRoutes);
+app.use('/api/comments', commentsRoutes);
+*/
 
 module.exports = app;
