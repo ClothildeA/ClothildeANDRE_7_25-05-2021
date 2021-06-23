@@ -1,21 +1,2 @@
-const Comments = require('../models/Comments');
+const Comment = require('../models/Comment');
 
-exports.getCommentsByPostId = (req, res)=>{
-
-};
-
-exports.postComment = (req, res) => {
-
-};
-
-exports.updateOne = (req, res) => {
-
-};
-
-exports.likeHandler = (req, res) => {
-
-};
-
-exports.deleteOne = (req, res) => {
-
-};

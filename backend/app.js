@@ -2,10 +2,9 @@ const express = require('express');
 const mysql = require ('mysql');
 
 const userRoutes = require('./routes/user');
-/*
-const postsRoutes = require('./routes/posts');
-const commentsRoutes = require('./routes/comments');
-*/
+const postRoutes = require('./routes/posts');
+const commentRoutes = require('./routes/comments');
+
 
 const User = require('./models/User.js');
 const DB = require('./models/DataBase');
@@ -31,11 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 */
 app.use('/api/auth', userRoutes);
-
-
-/*
-app.use('/api/posts', postsRoutes);
-app.use('/api/comments', commentsRoutes);
-*/
+app.use('/api/post', postRoutes);
+app.use('/api/comment', commentRoutes);
 
 module.exports = app;

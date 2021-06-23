@@ -16,4 +16,4 @@ dbConnect.connect(function(err) {
 	console.log("Connected to database!");
   });
 
-module.exports = {options, dbConnect};
+module.exports = dbConnect;

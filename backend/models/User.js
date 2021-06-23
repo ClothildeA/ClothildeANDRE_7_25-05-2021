@@ -1,29 +1,64 @@
-const mysql = require('mysql');
+const DB = require('./DataBase');
 
 const User = (user) => {
     this.email = user.email,
     this.password = user.password,
-    this.firstName = user.firstName,
-    this.lastName = user.lastName,
+    this.username = user.username,
+    this.prenom = user.firstName,
+    this.nom = user.lastName,
     this.creationDate = user.creationDate
 }
 
 User.getAll = result => {
-    sql.query("SELECT * FROM users", (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
-      }
-  
-      console.log("users: ", res);
-      result(null, res);
+  DB.query("SELECT * FROM Users", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    console.log("users: ", res);
+    result(null, res);
+  });
+};
+
+User.findOne = (username, result) => {
+    DB.query(`SELECT * FROM users WHERE username ='${username}'`, (err, res) => {
+        if (err) {
+            console.log("erreur: ", err);
+            result(err, null);
+            return;
+        }
+
+        if (res.length) {
+            console.log("Utilisateur trouvé : ", res[0]);
+            result(null, res[0]);
+            return;
+        }
+
+        result({ kind: "Non trouvé !" }, null);
     });
-  };
-  
-/*
+};
+
+User.findById = (userId, result) => {
+    DB.query(`SELECT * FROM users WHERE id ='${userId}'`, (err, res) => {
+        if (err) {
+            console.log("erreur: ", err);
+            result(err, null);
+            return;
+        }
+
+        if (res.length) {
+            console.log("Utilisateur trouvé : ", res[0]);
+            result(null, res[0]);
+            return;
+        }
+
+        result({ kind: "Non trouvé !" }, null);
+    });
+};
+
 User.create = (newUser, result) => {
-    sql.query("INSERT INTO Users SET ?", newUser, (err, res) => {
+    DB.query("INSERT INTO users SET ?", newUser, (err, res) => {
         if (err) {
             console.log("erreur: ", err);
             result(err, null);
@@ -33,27 +68,21 @@ User.create = (newUser, result) => {
         result(null, { id: res.insertId, ...newUser });
     });
 }
-*/
 
-/*
-exports.searchUser = customer => {
-    let query = 'SELECT * FROM Users WHERE email=?';
-    query = mysql.format(query, customer);
+User.remove = (id, result) => {
+    DB.query("DELETE FROM users WHERE id = ?", id, (err, res) => {
+        if (err) {
+            console.log("erreur: ", err);
+            result(null, err);
+            return;
+        }
+        if (res.affectedRows == 0) {
+            result({ kind: "Non trouvé !" }, null);
+            return;
+        }
+        console.log("Suppression de l'utilisateur avec l'id : ", id);
+        result(null, res);
+    });
 };
 
-exports.updateUser = customer => {
-    let query = 'UPDATE Users SET ??=?, WHERE ??=?';
-    query = mysql.format(query, customer);
-};
-
-exports.deleteUser = customer => {
-    let query = 'DELETE FROM Users WHERE email=?';
-    query = mysql.format(query, customer);
-};
-
-exports.getConnectedUsers = () =>{
-	let query = 'SELECT id, firstName, lastName, picture FROM Profils WHERE is_active = 1';
-	query = mysql.format(query);
-};
-*/
-
+module.exports = User;
