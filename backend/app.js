@@ -5,10 +5,6 @@ const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/posts');
 const commentRoutes = require('./routes/comments');
 
-
-const User = require('./models/User.js');
-const DB = require('./models/DataBase');
-
 const app = express();
 
 /* Config - Headers */

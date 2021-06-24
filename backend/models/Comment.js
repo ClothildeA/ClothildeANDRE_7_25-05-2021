@@ -1,6 +1,6 @@
 const DB = require('./DataBase');
 
-const Comment = (comment) => {
+const Comment = function (comment) {
 	this.message = comment.message,
 	this.post_id = comment.post_id,
 	this.user_id = comment.user_id,
@@ -20,7 +20,7 @@ Comment.getAll = result => {
             content.author = {
                 username: element.username,
             }
-            return commentaires;
+            return comments;
         })
         result(null, res);
     });
@@ -36,7 +36,7 @@ Comment.create = (newComment, result) => {
         console.log("Création du commentaire : ", { id: res.insertId, ...newComment });
         result(null, { id: res.insertId, ...newComment });
     });
-}
+};
 
 Comment.remove = (id, result) => {
     DB.query("DELETE FROM comments WHERE id = ?", id, (err, res) => {
