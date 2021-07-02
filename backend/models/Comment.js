@@ -18,7 +18,7 @@ Comment.getAll = result => {
         comments = res.map(element => {
             let content = new Comment(element)
             content.author = {
-                username: element.username,
+                username: element.username
             }
             return comments;
         })

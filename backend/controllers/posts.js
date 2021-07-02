@@ -27,7 +27,6 @@ exports.findAll = (req, res) => {
 }
 
 
-// Création Post
 exports.create = (req, res) => {
     if (!req.file) {
     	const post = new Post({
@@ -47,7 +46,7 @@ exports.create = (req, res) => {
         titre: req.body.titre,
         content: req.body.content,
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
-        user_id: req.body.user_id,
+        user_id: req.body.user_id
     })
 
     Post.create(post, (err, data) => {

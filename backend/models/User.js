@@ -69,6 +69,25 @@ User.create = (newUser, result) => {
     });
 }
 
+
+/*
+User.update = (userId, result) => {
+    DB.query(`UPDATE users SET nom=?, prenom=?, WHERE id='${userId}'`, [nom, prenom, req.params.id], (err, res) => {
+        if (err) {
+            console.log("erreur: ", err);
+            result(null, err);
+            return;
+        }
+        if (res.affectedRows == 0) {
+            result({ kind: "Non trouvé !" }, null);
+            return;
+        }
+        console.log("Modification de l'utilisateur avec l'id : ", id);
+        result(null, res);
+    });
+};
+*/
+
 User.remove = (id, result) => {
     DB.query("DELETE FROM users WHERE id = ?", id, (err, res) => {
         if (err) {

@@ -13,5 +13,6 @@ router.get('/user/:id', auth, userCtrl.findOne);
 router.post('/signup', userCtrl.signup);
 router.post('/login', userCtrl.login);
 router.delete('/user/:id', userCtrl.delete);
+//router.put('/user/:id', userCtrl.update);
 
 module.exports = router;

@@ -1,11 +1,19 @@
 const express = require('express');
 const mysql = require ('mysql');
+const helmet = require('helmet');
+const path = require('path');
+const xss = require('xss-clean');
+
+const limiter = require('./middleware/rateLimit');
 
 const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/posts');
 const commentRoutes = require('./routes/comments');
 
 const app = express();
+
+app.use(xss());
+app.use(helmet());
 
 /* Config - Headers */
 app.use((req, res, next)=>{
@@ -20,11 +28,10 @@ app.use((req, res, next)=>{
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-/* Routes */
+app.use('/api/auth', limiter);
 
-/*
+/* Routes */
 app.use('/images', express.static(path.join(__dirname, 'images')));
-*/
 app.use('/api/auth', userRoutes);
 app.use('/api/post', postRoutes);
 app.use('/api/comment', commentRoutes);
