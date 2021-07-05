@@ -1,0 +1,70 @@
+// Variables
+$color-background: #F2F2F2;
+$color-white: #FFFF;
+$color-post: #FFFF;
+$color-comment: #ecf9ff;
+
+//Mixins
+@mixin post {
+    box-shadow: 0px 5px 10px 2px rgb(226, 226, 226);
+    border-radius: 30px;
+    background-color: $color-post;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+@mixin comment {
+    background-color: $color-comment;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px 2px rgb(226, 226, 226);
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.main_wrapper {
+    background-color: $color-background;
+}
+
+.post_item {
+    @include post;
+    .post_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+    &--content-txt {
+        text-align: justify;
+    }
+    .comments_wrapper {
+        @include comment;
+        padding: .9rem;
+        margin: 1rem 0;
+
+        &--title {
+            margin: 0;
+        }
+
+        .comment_item {
+            background-color: $color-white;
+            margin: 1rem 0;
+            padding: 0.5rem;
+            border-radius: 5px;
+
+            .comment_header {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+            }
+
+            .comment_content {
+                text-align: justify;
+                padding: .5rem;
+            }
+        }
+
+    }
+    
+}
