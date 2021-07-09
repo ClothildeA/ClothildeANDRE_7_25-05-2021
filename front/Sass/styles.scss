@@ -3,20 +3,20 @@ $color-background: #F2F2F2;
 $color-white: #FFFF;
 $color-post: #FFFF;
 $color-comment: #ecf9ff;
+$color-border: #E2E2E2;
+$color-red-corporate: #fd2d02;
+$color-text-light: #808080;
 
 //Mixins
+@mixin border {
+    border: 1px solid $color-border;
+}
+
 @mixin post {
-    box-shadow: 0px 5px 10px 2px rgb(226, 226, 226);
-    border-radius: 30px;
+    border-radius: 5px;
     background-color: $color-post;
     margin: 1rem;
     padding: 1rem;
-}
-
-@mixin comment {
-    background-color: $color-comment;
-    border-radius: 10px;
-    box-shadow: 0px 5px 10px 2px rgb(226, 226, 226);
 }
 
 body {
@@ -28,43 +28,153 @@ body {
     background-color: $color-background;
 }
 
-.post_item {
-    @include post;
-    .post_header {
+.header {
+    background-color: $color-white;
+
+    &_logo {
+        width: 35%;
+        padding: 1rem;
+    }
+
+    &_title {
+        font-size: 1.5rem;
+        padding: 2rem;
+        margin: 0;
+        text-align: center;
+    }
+}
+
+.date {
+    font-size: .7rem;
+    color: $color-text-light;
+}
+
+.post {
+
+    &_new {
+        display: flex;
+        flex-direction: column;
+        margin: 1.5rem 1rem;
+        padding: 1.5rem;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0px 10px 10px $color-border;
+
+        .post_content--textarea {
+            height: 75px;
+        }
+
+        &--label {
+            margin-top: 1rem;
+        }
+
+        &--textarea {
+            resize: none;
+            margin-top: .5rem;
+        }
+
+        &--btn {
+            width: 60px;
+            align-self: flex-end;
+            margin-top: .5rem;
+        }
+    }
+
+    &_actu {
+        margin: 1rem;
+        font-size: 1.3rem;
+
+        &::before {
+            font-family: "Font Awesome 5 Free"; 
+            font-weight: 400; 
+            content: "\f017";
+            padding-right: 1rem;
+        }
+    }
+    .post_item {
+        @include post;
+        @include border;
+
+        .post_header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid $color-border;
+
+            &--username {
+                font-size: 1rem;
+            }
+        }
+
+        &--content-txt {
+            text-align: justify;
+            padding: 1rem .2rem;
+        }
+    }
+}
+
+.comments_wrapper {
+    padding: .9rem;
+    margin: 1rem 0;
+    border-top: 1px solid $color-border;
+
+    &--title {
+        margin: 0;
+        padding: 1rem 0;
+        font-size: 1rem;
+    }
+
+    .comment_item {
+        margin: 1rem 0;
+        padding: 0.5rem;
+        border-bottom: .5px solid $color-border;
+
+        .comment_header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+
+            &--username {
+                font-size: 1rem;
+            }
+        }
+
+        .comment_content {
+            text-align: justify;
+        }
+    }
+    .comment_new {
         display: flex;
         justify-content: space-between;
-        align-items: baseline;
-    }
-    &--content-txt {
-        text-align: justify;
-    }
-    .comments_wrapper {
-        @include comment;
-        padding: .9rem;
-        margin: 1rem 0;
-
-        &--title {
-            margin: 0;
-        }
-
-        .comment_item {
-            background-color: $color-white;
-            margin: 1rem 0;
-            padding: 0.5rem;
-            border-radius: 5px;
-
-            .comment_header {
-                display: flex;
-                justify-content: space-between;
-                align-items: baseline;
-            }
-
-            .comment_content {
-                text-align: justify;
-                padding: .5rem;
+        @include border;
+        border-radius: 5px;
+        &--textarea {
+            resize: none;
+            border: none;
+            width: 100%;
+            &:focus-visible{
+                outline: none;
             }
         }
-
+        &--btn {
+            border: none;
+            background: none;
+            color: $color-red-corporate;
+            font-weight: bold;
+        }
     }
-    
+}
+
+.home {
+    text-align: -webkit-center;
+
+    &_item {
+        background: white;
+        width: 65%;
+        text-align: center;
+        padding: 2rem;
+        margin: 1rem;
+        border-radius: 10px;
+        box-shadow: 0px 10px 10px #e2e2e2;
+    }
 }

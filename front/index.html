@@ -17,22 +17,30 @@
     <main id="app" class="main_wrapper">
 
         <header class="header">
-            <img class="header_logo" src="images/icon-left-font-monochrome-black.png" alt="logo groupomania" style="width: 35%;">
+            <img class="header_logo" src="images/icon-left-font-monochrome-black.png" alt="logo groupomania">
             <h1 class="header_title">{{ message }}</h1>
         </header>
 
         <section class="post">
             <!--AFFICHAGE DES POSTS-->
-            <h2 class="post_news">Fil d'actualités</h2>
-            <div class="post_item">
+            <form class="post_new" method="POST">
+                <label class="post_new--label post_title--label" for="Titre de la publication">Titre de votre publication</label>
+                <textarea class="post_new--textarea post_title--textarea" aria-label="Titre" placeholder="Titre"></textarea>
+                <label class="post_new--label post_content--label" for="Quoi de neuf ?">Quoi de neuf Username ?<!--{{ post.username }}--></label>
+                <textarea class="post_new--textarea post_content--textarea" aria-label="Quoi de neuf?" placeholder="Quoi de neuf?"></textarea>
+                <button class="post_new--btn" type="submit">Publier</button>
+            </form>
 
+            <h2 class="post_actu">Fil d'actualités</h2>
+
+            <div class="post_item">
                 <div class="post_item--content">
                     
                     <div class="post_header">
                         <h3 class="post_header--username">Username du post<!--{{ post.username }}--></h3>
                         <div class="post_header--date">
                             <div class="post_header--date-logo"> <!-- clock icon --> </div>
-                            <p class="post_header--date-content">Il y a 1 heure<!--{{ moment(post.date).fromNow() }}--> </p>
+                            <p class="post_header--date-content date">Il y a 1 heure<!--{{ moment(post.date).fromNow() }}--> </p>
                         </div>
                     </div>
 
@@ -55,10 +63,10 @@
                             <h5 class="comments_wrapper--title">Commentaires <em>- 1<!--{{ post.comments.length }}--></em></h5>
                             <div class="comment_item">
                                     <div class="comment_header">
-                                        <h6 class="post_header--username">Username<!--{{ comment.username }}--></h6>
-                                        <div class="post_header--date">
-                                            <div class="post_header--date-logo"> <!-- clock icon --> </div>
-                                            <p class="post_header--date-content">Il y a 45 minutes<!--{{ moment(comment.date).fromNow() }}--> </p>
+                                        <h6 class="comment_header--username">Username<!--{{ comment.username }}--></h6>
+                                        <div class="comment_header--date">
+                                            <div class="comment_header--date-logo"> <!-- clock icon --> </div>
+                                            <p class="date">Il y a 45 minutes<!--{{ moment(comment.date).fromNow() }}--> </p>
                                         </div>
                                     </div>
 
@@ -69,6 +77,10 @@
                                     </p>
 
                             </div>
+                            <form class="comment_new" method="POST">
+                                <textarea class="comment_new--textarea" aria-label="Ajouter un commentaire..." placeholder="Ajouter un commentaire..."></textarea>
+                                <button class="comment_new--btn" type="submit">Publier</button>
+                            </form>
                         </div>
                     
                 </div>
@@ -80,6 +92,7 @@
         </footer>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://kit.fontawesome.com/2683cb0723.js" crossorigin="anonymous"></script>
     <script>
         const app = new Vue({
             el: '#app',
