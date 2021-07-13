@@ -1,5 +1,5 @@
 <template>
-    <div id="home" class="home">
+    <div id="home">
         <Home></Home>
     </div>
 </template>
@@ -8,9 +8,9 @@
 <script>
 import Home from "../components/Home";
 export default {
-    name: "Home",
+    name: "home",
     components: {
-        Home
+        Home,
     }
 }
 </script>

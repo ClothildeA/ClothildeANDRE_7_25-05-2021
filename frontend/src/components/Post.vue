@@ -28,26 +28,26 @@
                      :src="post.imageUrl"
                      :alt="post.titre"/>
                 <p class="post_item--content-txt">{{ post.content }}</p>
-
-                        <div class="comments_wrapper">
-                        <h5 class="comments_wrapper--title" v-if="post.comments.length >= 0" @click="showCommentsAction(post)">Commentaires - {{ post.comments.length }}</h5>
-                        <div class="comment_item">
+                <button v-if="post.comments.length >= 0" @click="showCommentsAction(post)">Voir les commentaires</button>
+                        <div class="comments_wrapper" v-if="showComments[post.post_id]">
+                        <h5 class="comments_wrapper--title">Commentaires - {{ post.comments.length }}</h5>
+                        <div class="comment_item" v-for="comment in comments" :key="comment.postId">
+                            <div class="show-comment" v-if="post.post_id == comment.post_id">
                                 <div class="comment_header">
-                                    <h6 class="comment_header--username">Username<!--{{ comment.username }}--></h6>
+                                    <h6 class="comment_header--username">{{ comment.username }}</h6>
                                     <div class="comment_header--date">
                                         <div class="comment_header--date-logo"> <!-- clock icon --> </div>
-                                        <p class="date">Il y a 45 minutes<!--{{ moment(comment.date).fromNow() }}--> </p>
+                                        <p class="date">{{ moment(comment.date).fromNow() }}</p>
                                     </div>
                                 </div>
-                                <p class="comment_content">
-                                    <!--{{ comment.message }}-->
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-                                </p>
-
+                                <p class="comment_content">{{ comment.message }}</p>
+                            </div>
                         </div>
-                        <form class="comment_new" method="POST">
-                            <textarea class="comment_new--textarea" aria-label="Ajouter un commentaire..." placeholder="Ajouter un commentaire..."></textarea>
+                        <form class="comment_new" @submit.prevent="sendComment(post.post_id)">
+                            <input type="text" class="comment_new--textarea"
+                            aria-label="Ajouter un commentaire..."
+                            placeholder="Ajouter un commentaire..."
+                            v-model.lazy="message">
                             <button class="comment_new--btn" type="submit">Publier</button>
                         </form>
                     </div>

@@ -1,22 +1,24 @@
 <template>
-    <section class="home" id="home">
+    <section class="home">
         <div class="home_item">
             <p class="home_item--text">J'ai déjà un compte</p>
-            <button class="home_item--btn">Je me connecte</button>
+            <button class="home_item--btn"><a href="#/login">Je me connecte</a></button>
        </div>
 
        <p>- ou -</p>
         <div class="home_item">
             <p class="home_item--text">Je n'ai pas encore de compte</p>
-            <button class="home_item--btn">Je m'inscris</button>
+            <button class="home_item--btn"><a href="#/signup">Je m'inscris</a></button>
        </div>
     </section>  
 </template>
 
 <script>
+
 export default {
     name : 'Home'
 }
+
 </script>
 
 <style scoped lang="scss">

@@ -1,5 +1,7 @@
 <template>
-    <Post></Post>
+    <div id="posts" class="posts">
+        <Post></Post>
+    </div>
 </template>
 
 
