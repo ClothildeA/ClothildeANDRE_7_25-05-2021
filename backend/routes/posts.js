@@ -11,8 +11,4 @@ router.get('/getAll', auth, postCtrl.findAll);
 router.get('/:id', auth, postCtrl.findOne);
 router.delete('/:id', auth, postCtrl.delete);
 
-/*
-router.put('/:id', auth, multer, postCtrl.updateOne);
-*/
-
 module.exports = router;

@@ -41,18 +41,7 @@ exports.signup = (req, res) => {
         }).catch(err => res.status(500).json({ message: "Il y a une erreur :" + err }))
 }
 
-exports.update = (req, res) => {
-    User.update(req.params.id, (err, data) => {
-        const postObject = req.file ? // Crée un objet postObjet pour mettre à jour l'URI de l'image
-      {
-        ...JSON.parse(req.body.post),
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-      } : { ...req.body };
-    User.updateOne({ userId: req.params.id }, { ...postObject, _id: req.params.id })
-      .then(() => res.status(200).json({ message: 'Post modifié !'}))
-      .catch(error => res.status(400).json({ error }));
-    })
-};
+
 
 
 exports.login = (req, res) => {

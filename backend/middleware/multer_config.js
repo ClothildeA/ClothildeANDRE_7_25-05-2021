@@ -5,18 +5,7 @@ const MIME_TYPES = {
 	'image/jpeg': 'jpg',
 	'image/png': 'png',
 	'image/gif': 'gif',
-	'image/webp': 'webp',
-	'video/x-flv': 'flv',
-	'video/mp4': 'mp4',
-	'video/MP2T': 'ts',
-	'video/3gpp': '3gp',
-	'video/quicktime': 'mov',
-	'video/avi': 'avi',
-	'video/x-ms-wmv': 'wmv',
-	'audio/mpeg': 'mp3',
-	'audio/mp4': 'mp4',
-	'audio/wav': 'wav',
-	'audio/x-ms-wma': 'wma'
+	'image/webp': 'webp'
 }
 
 const storage = multer.diskStorage({
@@ -30,4 +19,4 @@ const storage = multer.diskStorage({
 	}
 });
 
-module.exports = multer({ storage }).single('image');
+module.exports = multer({ storage }).single('file');

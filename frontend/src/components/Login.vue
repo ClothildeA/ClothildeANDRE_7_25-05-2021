@@ -2,17 +2,17 @@
         <section id="login" class="login">
             <h2>Connexion</h2>
             <form id="login-form" class="login_form" @submit="loginForm">
-                <div class="login_form--username">
-                    <label class="login_form--username-label" for="username">Nom d'utilisateur</label>
-                    <input class="login_form--username-input"
+                <div class="login_form--item">
+                    <label class="login_form--item-label" for="username">Nom d'utilisateur</label>
+                    <input class="login_form--item-input"
                     type="text"
                     id="username"
                     v-model="username">
                 </div>
 
-                <div class="login_form--password">
-                    <label class="login_form--password-label" for="password">Mot de Passe</label>
-                    <input class="login_form--password-input" 
+                <div class="login_form--item">
+                    <label class="login_form--item-label" for="password">Mot de Passe</label>
+                    <input class="login_form--item-input" 
                     type="password"
                     id="password"
                     v-model="password">
@@ -79,5 +79,38 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+h2 {
+    text-align: center;
+}
+.login_form {
+    display: flex;
+    flex-direction: column;
 
+    &--item {
+        display: flex;
+        justify-content: center;
+        margin: .9rem;
+
+        &-label {
+            margin-right: 1rem;
+        }
+    }
+    &--btn {
+        max-width: fit-content;
+        align-self: center;
+        margin: 1.5rem;
+        background-color: #fd2d02;
+        color: #FFF;
+        border-radius: 10px;
+        border: none;
+        padding: .5rem;
+        box-shadow: 2px 3px 10px #e2e2e2;
+
+        &:hover {
+            opacity: 0.8;
+            box-shadow: 1px 1px 10px #808080;
+            cursor: pointer;
+        }
+    }
+}
 </style>
