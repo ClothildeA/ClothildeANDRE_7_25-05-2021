@@ -9,12 +9,12 @@ Importer la base de données à partir du fichier mysql/createTables.sql
 
 Commandes à éxecuter pour la mise en place du Backend:
 
-$ cd backend
-$ npm install
-$ nodemon server
+- $ cd backend
+- $ npm install
+- $ nodemon server
 
 Commandes à éxecuter pour la mise en place du Frontend:
 
-$ cd frontend
-$ npm install
-$ npm run serve
+- $ cd frontend
+- $ npm install
+- $ npm run serve
