@@ -21,7 +21,7 @@ export default {
 
 body {
   margin: 0;
-  background-color: #f2f2f2;
+  background-color: #f2f3f9;
   font-family: "Montserrat";
 }
 

@@ -31,9 +31,13 @@
         </div>
       </router-link>
 
-      <div v-if="currentUser" class="hover nav_link disconnect">
+      <div
+        v-if="currentUser"
+        @click.prevent="disconnect"
+        class="hover nav_link disconnect"
+      >
         <font-awesome-icon icon="sign-out-alt" class="link-icon" />
-        <a class="link-text" @click.prevent="disconnect">Déconnexion</a>
+        <a class="link-text">Déconnexion</a>
       </div>
     </nav>
 
@@ -125,7 +129,7 @@ export default {
       }
 
       .link-icon {
-        margin: 0.5rem;
+        margin-right: 0.5rem;
         font-size: 1.1rem;
       }
 
