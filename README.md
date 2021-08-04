@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 📱 Création d'un réseau social - Projet 7 - OpenClassrooms
 
 Voici le réseau social Groupomania !
