@@ -1,5 +1,6 @@
 const Comment = require('../models/Comment');
 
+//Création d'un nouveau commentaire
 exports.create = (req, res) => {
 
     if (!req.body) {
@@ -17,6 +18,7 @@ exports.create = (req, res) => {
     });
 };
 
+//Récupération de tous les commentaires
 exports.findAll = (req, res) => {
 
     Comment.getAll((err, data) => {
@@ -26,6 +28,7 @@ exports.findAll = (req, res) => {
     });
 };
 
+//Suppression d'un commentaire
 exports.delete = (req, res) => {
 
     Comment.remove(req.params.id, (err, data) => {

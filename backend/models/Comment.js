@@ -1,12 +1,14 @@
 const DB = require('./DataBase');
 
+//Création de l'objet Comment
 const Comment = function (comment) {
-	this.message = comment.message,
-	this.post_id = comment.post_id,
-	this.user_id = comment.user_id,
-	this.date = comment.date
+    this.message = comment.message,
+        this.post_id = comment.post_id,
+        this.user_id = comment.user_id,
+        this.date = comment.date
 }
 
+//Récupération de l'ensemble des commentaires
 Comment.getAll = result => {
     DB.query(`SELECT comments.id, comments.post_id, comments.message, comments.date, comments.user_id, users.username FROM comments INNER JOIN users ON comments.user_id = users.id ORDER BY date DESC`, (err, res) => {
         if (err) {
@@ -26,6 +28,7 @@ Comment.getAll = result => {
     });
 };
 
+//Création d'un nouveau commentaire
 Comment.create = (newComment, result) => {
     DB.query(`INSERT INTO comments (message, post_id, user_id, date) VALUES ("${newComment.message}","${newComment.post_id}","${newComment.user_id}", Now())`, (err, res) => {
         if (err) {
@@ -38,6 +41,7 @@ Comment.create = (newComment, result) => {
     });
 };
 
+//Suppression d'un commentaire
 Comment.remove = (id, result) => {
     DB.query("DELETE FROM comments WHERE id = ?", id, (err, res) => {
         if (err) {

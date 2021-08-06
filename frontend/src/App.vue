@@ -23,6 +23,7 @@ body {
   margin: 0;
   background-color: #f2f3f9;
   font-family: "Montserrat";
+  color: #545454;
 }
 
 #app {

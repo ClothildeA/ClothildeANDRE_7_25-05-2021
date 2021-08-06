@@ -73,6 +73,7 @@ export default {
     };
   },
   methods: {
+    // Création d'un nouvel utilisateur
     submitForm(e) {
       this.errors = [];
       if (!this.nom) {
@@ -99,7 +100,6 @@ export default {
           this.password
         ).then(() => {
           alert("Bienvenue ! vous pouvez maintenant vous connecter !");
-
           this.$router.push("/login");
         });
       }
@@ -112,39 +112,49 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h2 {
-  text-align: center;
-}
-.signup_form {
-  display: flex;
-  flex-direction: column;
-
-  &--item {
+.signup {
+  h2 {
+    text-align: center;
+  }
+  &_form {
     display: flex;
-    justify-content: space-between;
-    margin: 0.9rem;
+    flex-direction: column;
 
-    &-label {
-      margin-right: 1rem;
+    &--item {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.9rem;
+
+      &-label {
+        margin-right: 1rem;
+      }
+    }
+    &--btn {
+      max-width: fit-content;
+      align-self: center;
+      margin: 1.5rem;
+      background-color: #fd2d02;
+      color: #fff;
+      border-radius: 10px;
+      border: none;
+      padding: 0.5rem;
+      box-shadow: 2px 3px 10px #e2e2e2;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 300ms ease-in-out;
+
+      &:hover {
+        opacity: 0.8;
+        box-shadow: 1px 1px 10px #808080;
+      }
     }
   }
-  &--btn {
-    max-width: fit-content;
-    align-self: center;
-    margin: 1.5rem;
-    background-color: #fd2d02;
-    color: #fff;
-    border-radius: 10px;
-    border: none;
-    padding: 0.5rem;
-    box-shadow: 2px 3px 10px #e2e2e2;
-    cursor: pointer;
-    font-weight: bold;
+}
 
-    &:hover {
-      opacity: 0.8;
-      box-shadow: 1px 1px 10px #808080;
-    }
+@media all and (min-width: 570px) {
+  .signup {
+    max-width: 65%;
+    margin: auto;
   }
 }
 </style>

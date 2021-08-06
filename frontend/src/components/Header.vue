@@ -63,6 +63,7 @@ export default {
   },
 
   methods: {
+    // Déconnexion de l'utilisateur
     disconnect() {
       localStorage.clear();
       console.log("Déconnexion");
@@ -93,6 +94,8 @@ export default {
     padding: 0 1rem 1.5rem;
     font-weight: 100;
     margin: 0;
+    margin: auto;
+    max-width: 600px;
   }
   .title-connected {
     text-align: center;
@@ -117,11 +120,13 @@ export default {
       font-weight: bold;
     }
     .hover {
+      color: #545454;
       padding: 1.5rem 0;
       display: flex;
       align-items: center;
       justify-content: center;
       line-height: 2;
+      transition: all 100ms ease-in-out;
 
       &:hover {
         border-top: 2px solid #fd2d02;

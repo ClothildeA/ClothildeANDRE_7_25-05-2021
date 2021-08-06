@@ -1,5 +1,4 @@
 <template>
-  <!--AFFICHAGE DES POSTS-->
   <form
     class="post_new"
     @submit.prevent="sendPost"
@@ -31,6 +30,7 @@
 
     <input
       class="post_new--file"
+      aria-label="Choisir un fichier"
       type="file"
       accept="image/*"
       ref="file"
@@ -58,22 +58,27 @@ export default {
     };
   },
   methods: {
+    // Ajout d'une image
     selectFile() {
-      console.log(this.$refs.file.files[0]);
       this.file = this.$refs.file.files[0];
     },
+
+    // Création d'un nouveau Post
     sendPost(e) {
-      let formData = new FormData();
+      let formData = new FormData(); // Création de paires clés/valeurs
       formData.append("titre", this.titre);
       formData.append("content", this.content);
       formData.append("file", this.file);
       formData.append("user_id", this.userId);
+      // Si il y a un titre & un contenu:
       if (this.titre && this.content) {
+        // Envoie des informations grâce à Axios
         ApiService.createPost(formData).then(() => {
           alert("Post envoyé avec succès !");
-          document.location.reload();
+          document.location.reload(); // Rechargement de la page
         });
       } else {
+        // Sinon un message d'alerte est envoyé
         alert("Titre ou message non remplit !");
       }
       e.preventDefault();
@@ -122,6 +127,7 @@ export default {
     padding: 0.5rem;
     box-shadow: 2px 3px 10px #e2e2e2;
     font-weight: bold;
+    transition: all 300ms ease-in-out;
 
     &:hover {
       opacity: 0.8;

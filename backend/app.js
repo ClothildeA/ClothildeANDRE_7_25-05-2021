@@ -1,19 +1,22 @@
 const express = require('express');
-const mysql = require('mysql');
+
+/* Extensions */
 const helmet = require('helmet');
 const path = require('path');
 const xss = require('xss-clean');
-
 const limiter = require('./middleware/rateLimit');
 
+/* Routes */
 const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/posts');
 const commentRoutes = require('./routes/comments');
 
 const app = express();
 
-
+/* Config - Xss-Clean */
 app.use(xss());
+
+/* Config - Helmet */
 app.use(helmet());
 
 /* Config - Headers */
@@ -29,6 +32,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+/* Config - Express-Rate-Limit */
 app.use('/api/auth', limiter);
 
 /* Routes */

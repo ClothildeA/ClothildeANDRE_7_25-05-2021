@@ -1,26 +1,29 @@
 const DB = require('./DataBase');
 
+//Création de l'objet User
 const User = (user) => {
     this.email = user.email,
-    this.password = user.password,
-    this.username = user.username,
-    this.prenom = user.firstName,
-    this.nom = user.lastName,
-    this.creationDate = user.creationDate
+        this.password = user.password,
+        this.username = user.username,
+        this.prenom = user.firstName,
+        this.nom = user.lastName,
+        this.creationDate = user.creationDate
 }
 
+//Récupération de l'ensemble des utilisateurs
 User.getAll = result => {
-  DB.query("SELECT * FROM Users", (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
-    console.log("users: ", res);
-    result(null, res);
-  });
+    DB.query("SELECT * FROM Users", (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+        console.log("users: ", res);
+        result(null, res);
+    });
 };
 
+//Récupération d'un utilisateur avec username
 User.findOne = (username, result) => {
     DB.query(`SELECT * FROM users WHERE username ='${username}'`, (err, res) => {
         if (err) {
@@ -39,6 +42,7 @@ User.findOne = (username, result) => {
     });
 };
 
+//Récupération d'un utilisateur avec ID
 User.findById = (userId, result) => {
     DB.query(`SELECT * FROM users WHERE id ='${userId}'`, (err, res) => {
         if (err) {
@@ -57,6 +61,7 @@ User.findById = (userId, result) => {
     });
 };
 
+//Création d'un nouvel utilisateur
 User.create = (newUser, result) => {
     DB.query("INSERT INTO users SET ?", newUser, (err, res) => {
         if (err) {
@@ -69,25 +74,7 @@ User.create = (newUser, result) => {
     });
 }
 
-
-/*
-User.update = (userId, result) => {
-    DB.query(`UPDATE users SET nom=?, prenom=?, WHERE id='${userId}'`, [nom, prenom, req.params.id], (err, res) => {
-        if (err) {
-            console.log("erreur: ", err);
-            result(null, err);
-            return;
-        }
-        if (res.affectedRows == 0) {
-            result({ kind: "Non trouvé !" }, null);
-            return;
-        }
-        console.log("Modification de l'utilisateur avec l'id : ", id);
-        result(null, res);
-    });
-};
-*/
-
+//Suppression d'un utilisateur
 User.remove = (id, result) => {
     DB.query("DELETE FROM users WHERE id = ?", id, (err, res) => {
         if (err) {

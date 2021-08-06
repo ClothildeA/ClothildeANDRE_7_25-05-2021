@@ -2,6 +2,7 @@ const Post = require('../models/Post');
 const Comment = require('../models/Comment');
 const fs = require('fs');
 
+//Récupération de l'ensemble des Posts
 exports.findAll = (req, res) => {
 
     Post.getAll((err, posts) => {
@@ -26,37 +27,38 @@ exports.findAll = (req, res) => {
     })
 }
 
-
+//Création d'un nouveau Post
 exports.create = (req, res) => {
     if (!req.file) {
-    	const post = new Post({
-        	titre: req.body.titre,
-        	content: req.body.content,
-        	imageUrl: "",
-        	user_id: req.body.user_id
-    	})
-    	Post.create(post, (err, data) => {
-        	if (err)
-            	res.status(500).json({ message: "Post non créé !" })
-    		else res.send(data)
-    	})
+        const post = new Post({
+            titre: req.body.titre,
+            content: req.body.content,
+            imageUrl: "",
+            user_id: req.body.user_id
+        })
+        Post.create(post, (err, data) => {
+            if (err)
+                res.status(500).json({ message: "Post non créé !" })
+            else res.send(data)
+        })
 
     } else {
         const post = new Post({
-        titre: req.body.titre,
-        content: req.body.content,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
-        user_id: req.body.user_id
-    })
+            titre: req.body.titre,
+            content: req.body.content,
+            imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+            user_id: req.body.user_id
+        })
 
-    Post.create(post, (err, data) => {
-        if (err)
-            res.status(500).json({ message: "Post non créé !" })
-        else res.send(data)
-    })
+        Post.create(post, (err, data) => {
+            if (err)
+                res.status(500).json({ message: "Post non créé !" })
+            else res.send(data)
+        })
     }
 }
 
+//Récupération d'un Post
 exports.findOne = (req, res) => {
 
     Post.findById(req.params.id, (err, posts) => {
@@ -80,8 +82,9 @@ exports.findOne = (req, res) => {
     })
 }
 
+//Suppresion d'un post
 exports.delete = (req, res) => {
-         
+
     Post.remove(req.params.id, (err, data) => {
 
         if (err) {

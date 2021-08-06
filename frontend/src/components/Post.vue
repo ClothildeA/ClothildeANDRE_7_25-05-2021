@@ -125,19 +125,22 @@ export default {
         return;
       }
     },
+
     // Affichage des commentaires liés au post
     showCommentsAction(post) {
       this.showComments[post.post_id] = !this.showComments[post.post_id];
       this.showComments = JSON.parse(JSON.stringify(this.showComments));
     },
+
+    // Création d'un nouveau commentaire
     sendComment(postId) {
       const message = this.message;
-      console.log(message);
-      console.log(postId);
       ApiService.createComment(message, postId);
       this.message = "";
       location.reload();
     },
+
+    // Suppression d'un commentaire
     removeComment(comment) {
       if (confirm("Êtes vous sûr de vouloir supprimer le commentaire ?")) {
         ApiService.removeComment(comment);
@@ -147,25 +150,23 @@ export default {
       }
     },
   },
+
   mounted() {
-    //Appel à API pour affichage de tous les messages
+    //Appel de l'API pour l'affichage de tous les posts et commentaires
     ApiService.getAllPost()
       .then((response) => {
         this.posts = response.data;
-        console.log(this.posts);
       })
       .catch((error) => console.log(error));
     ApiService.getAllComment()
       .then((response) => {
         this.comments = response.data;
-        console.log(this.comments);
       })
       .catch((error) => console.log(error));
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .date {
   font-size: 0.7rem;
@@ -228,6 +229,7 @@ export default {
         border: none;
         color: #fd2d02;
         font-weight: bold;
+        transition: all 300ms ease-in-out;
 
         &:hover {
           opacity: 0.6;
@@ -251,6 +253,7 @@ export default {
       color: #fd2d02;
       font-weight: bold;
       margin: 1rem 0;
+      transition: all 300ms ease-in-out;
 
       &:hover {
         opacity: 0.6;
@@ -290,6 +293,7 @@ export default {
         border: none;
         color: #fd2d02;
         font-weight: bold;
+        transition: all 300ms ease-in-out;
 
         &:hover {
           opacity: 0.6;
@@ -326,7 +330,8 @@ export default {
     background: none;
     color: #fd2d02;
     font-weight: bold;
-    width: 105px;
+    width: 110px;
+    transition: all 300ms ease-in-out;
 
     &:hover {
       opacity: 0.6;
