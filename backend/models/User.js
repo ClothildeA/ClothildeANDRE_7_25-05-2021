@@ -7,7 +7,8 @@ const User = (user) => {
         this.username = user.username,
         this.prenom = user.firstName,
         this.nom = user.lastName,
-        this.creationDate = user.creationDate
+        this.creationDate = user.creationDate,
+        this.id = user.id
 }
 
 //Récupération de l'ensemble des utilisateurs
@@ -90,5 +91,7 @@ User.remove = (id, result) => {
         result(null, res);
     });
 };
+
+
 
 module.exports = User;

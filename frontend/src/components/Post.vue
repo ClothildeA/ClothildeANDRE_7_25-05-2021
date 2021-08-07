@@ -288,6 +288,19 @@ export default {
         margin: 1rem 0;
       }
 
+      &--edit-btn {
+        background: none;
+        border: none;
+        color: #545454;
+        font-weight: bold;
+        transition: all 300ms ease-in-out;
+
+        &:hover {
+          opacity: 0.6;
+          cursor: pointer;
+        }
+      }
+
       &--remove-btn {
         background: none;
         border: none;

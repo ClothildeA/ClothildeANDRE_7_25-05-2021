@@ -78,7 +78,7 @@ export default {
           document.location.reload(); // Rechargement de la page
         });
       } else {
-        // Sinon un message d'alerte est envoyé
+        // Sinon un message d'alerte est affiché
         alert("Titre ou message non remplit !");
       }
       e.preventDefault();

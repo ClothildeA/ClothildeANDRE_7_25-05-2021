@@ -62,16 +62,4 @@ Comment.remove = (id, result) => {
     });
 };
 
-//Modification d'un commentaire
-Comment.update = (updateComment, result) => {
-    DB.query(`UPDATE comments SET 'message' = "${updateComment.message}" WHERE id = ${updateComment.id}`, updateComment, (err, res) => {
-        if (err) {
-            console.log("erreur: ", err);
-            result(err, null);
-            return;
-        }
-        console.log("Modification du commentaire : ", { ...udapteComment });
-        result(null, { ...updateComment });
-    });
-};
 module.exports = Comment;

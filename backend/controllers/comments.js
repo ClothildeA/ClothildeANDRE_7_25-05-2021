@@ -42,23 +42,3 @@ exports.delete = (req, res) => {
         } else res.json({ message: 'commentaire supprimé avec succès !' })
     })
 };
-
-//Modification d'un commentaire
-exports.update = (req, res) => {
-    if (!req.body) {
-        res.status(400).json({ message: 'Erreur !' })
-    }
-    const comment = new Comment({
-        message: req.body.message,
-        id: req.params.id
-    });
-
-    console.log('req.params.id: ' + req.params.id);
-    console.log('comment.id: ' + comment.id);
-
-    Comment.update(comment, (err, data) => {
-        if (err)
-            res.status(500).json({ message: 'Commentaire non modifié !' })
-        else res.send(data);
-    });
-};

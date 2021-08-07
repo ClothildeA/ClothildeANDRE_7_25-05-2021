@@ -10,6 +10,7 @@ import {
   faNewspaper,
   faUser,
   faHistory,
+  faEdit,
   faTrashAlt,
   faComment
 } from '@fortawesome/free-solid-svg-icons'
@@ -23,6 +24,7 @@ library.add(
   faNewspaper,
   faUser,
   faHistory,
+  faEdit,
   faTrashAlt,
   faComment
 )

@@ -88,4 +88,5 @@ Post.remove = (id, result) => {
     });
 };
 
+
 module.exports = Post;
